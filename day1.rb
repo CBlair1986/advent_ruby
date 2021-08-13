@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Day 1
 
 # Part 1
@@ -20,7 +22,7 @@ current_num = 0
 
 nums = numbers.clone
 
-while nums.length > 0
+until nums.empty?
   current_num = nums.pop
   nums.each do |n|
     pairs += [[current_num + n, current_num, n]]
@@ -33,7 +35,7 @@ def comb(ary)
   ps = []
   ns = ary.clone
   cn = 0
-  while ns.length > 0
+  until ns.empty?
     cn = ns.pop
     ns.each do |n|
       ps.append [cn, n]
@@ -94,10 +96,10 @@ numbers = lines.map(&:to_i)
 nums = numbers.clone
 triples = []
 
-while nums.length > 0
+until nums.empty?
   num = nums.pop
   rest = nums.clone
-  while rest.length > 0
+  until rest.empty?
     n = rest.pop
     rest.each do |r|
       triples.append [num, n, r]
@@ -105,7 +107,7 @@ while nums.length > 0
   end
 end
 
-# Now triples should have a collection of all the triples present in the set of numbers, without any number being duplicated
+# Now triples should have a collection of all the triples present in the set of numbers, without any duplicates
 
 triples.map do |(x, y, z)|
   puts x * y * z if x + y + z == 2020
