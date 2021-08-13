@@ -1,4 +1,4 @@
-input = File.read("input/day2.txt")
+input = File.read('input/day2.txt')
 
 puts input
 
@@ -9,8 +9,7 @@ puts input
 # If the given string is "1-9 a: abcde" then it wants to verify that anywhere between one and nine 'a's are present in the ending string.
 
 def parse_min_max(str)
-	return false, str
+  [false, str]
 end
-
 
 # Part 2
