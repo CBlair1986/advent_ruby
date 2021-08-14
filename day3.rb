@@ -9,22 +9,22 @@ input = File.read('input/day3.txt')
 class Position
   attr_accessor :x, :y
 
-  def initialize(x, y)
+  def initialize(_posx, _posy)
     @x = x
     @y = y
   end
 
-  def shift(dx, dy)
+  def shift(deltax, deltay)
     p = clone
 
-    p.x += dx
-    p.y += dy
+    p.x += deltax
+    p.y += deltay
     p
   end
 
-  def shift!(dx, dy)
-    @x += dx
-    @y += dy
+  def shift!(deltax, deltay)
+    @x += deltax
+    @y += deltay
   end
 
   def self.zero
@@ -68,7 +68,7 @@ p = Position.new(0, 0)
 
 count = 0
 
-while terrain = m.at(p)
+while (terrain = m.at(p))
   count += 1 if terrain == '#'
   p.shift!(dx, dy)
 end
@@ -87,15 +87,15 @@ deltas = [
 
 total_count = 1
 
-deltas.each do |(dx, dy)|
+deltas.each do |(deltax, deltay)|
   count = 0
 
   m = Map.new(input)
   p = Position.zero
 
-  while terrain = m.at(p)
+  while (terrain = m.at(p))
     count += 1 if terrain == '#'
-    p.shift!(dx, dy)
+    p.shift!(deltax, deltay)
   end
 
   total_count *= count
