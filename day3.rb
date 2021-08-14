@@ -6,12 +6,14 @@
 input = File.read('input/day3.txt')
 
 # Part 1
+
+# Position represents a vector, basically.
 class Position
   attr_accessor :x, :y
 
-  def initialize(_posx, _posy)
-    @x = x
-    @y = y
+  def initialize(posx, posy)
+    @x = posx
+    @y = posy
   end
 
   def shift(deltax, deltay)
@@ -28,7 +30,7 @@ class Position
   end
 
   def self.zero
-    new(0, 0)
+    self.new(0, 0)
   end
 end
 
@@ -43,11 +45,7 @@ class Map
   def at(pos)
     # pos is a Position
     # We need to wrap around the edge of the map, so we'll take x mod width
-    if pos.y <= height
-      @field.dig(pos.y, pos.x % width)
-    else
-      false
-    end
+    @field.dig(pos.y, pos.x % width) if pos.y < height
   end
 
   def width
@@ -64,7 +62,7 @@ m = Map.new(input)
 dx = 3
 dy = 1
 
-p = Position.new(0, 0)
+p = Position.zero
 
 count = 0
 
