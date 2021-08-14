@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Just a test change
+
 # File input
 input = File.read('input/day3.txt')
 
