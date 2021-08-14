@@ -72,7 +72,7 @@ parse_results2 = input.lines.map do |line|
 end
 
 def charat(pos, str)
-  str[pos + 1]
+  str[pos - 1]
 end
 
 def validate2(pos1:, pos2:, char:, pass:)
@@ -83,4 +83,4 @@ valid_passwords2 = parse_results2.select do |p|
   validate2(**p)
 end
 
-print 'Part 2 count:', valid_passwords2.length
+puts "Part 2 count: #{valid_passwords2.length}"
