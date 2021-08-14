@@ -28,10 +28,9 @@ def parse_character(tokens)
   [char, tokens]
 end
 
-parse_results = input.lines.map do |line|
+parse_results1 = input.lines.map do |line|
   ts = tokens(line)
-  min_maxes, rest = parse_min_max(ts)
-  min, max = min_maxes
+  (min, max), rest = parse_min_max(ts)
   character, rest = parse_character(rest)
   {
     min: min.to_i,
@@ -41,19 +40,47 @@ parse_results = input.lines.map do |line|
   }
 end
 
-def validate(min:, max:, char:, pass:)
+def validate1(min:, max:, char:, pass:)
   x = pass.count(char)
   min <= x && x <= max
 end
 
-count = 0
-
-valid_passwords = parse_results.map do |p|
-  v = validate(**p)
-  count+=1 if v
-  [p, v]
+valid_passwords = parse_results1.select do |p|
+  validate1(**p)
 end
 
-pp valid_passwords, count
+puts "Part 1 count: #{valid_passwords.length}"
 
 # Part 2
+input = File.read('input/day2.txt')
+
+def parse_positions(tokens)
+  first = tokens.shift
+  [first.split('-'), tokens]
+end
+
+parse_results2 = input.lines.map do |line|
+  ts = tokens(line)
+  (pos1, pos2), rest = parse_positions(ts)
+  char, rest = parse_character(rest)
+  {
+    pos1: pos1.to_i,
+    pos2: pos2.to_i,
+    char: char,
+    pass: rest[0]
+  }
+end
+
+def charat(pos, str)
+  str[pos + 1]
+end
+
+def validate2(pos1:, pos2:, char:, pass:)
+  [charat(pos1, pass), charat(pos2, pass)].count(char) == 1
+end
+
+valid_passwords2 = parse_results2.select do |p|
+  validate2(**p)
+end
+
+print 'Part 2 count:', valid_passwords2.length
