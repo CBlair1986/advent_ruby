@@ -2,4 +2,6 @@
 
 input = File.read('input/day4.txt')
 
-pp input
+chunks = input.split("\n\n").map(&:lines)
+
+pp chunks
