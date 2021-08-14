@@ -34,12 +34,26 @@ parse_results = input.lines.map do |line|
   min, max = min_maxes
   character, rest = parse_character(rest)
   {
-    min: min,
-    max: max,
-    character: character,
-    password: rest[0]
+    min: min.to_i,
+    max: max.to_i,
+    char: character,
+    pass: rest[0]
   }
 end
 
-pp parse_results
+def validate(min:, max:, char:, pass:)
+  x = pass.count(char)
+  min <= x && x <= max
+end
+
+count = 0
+
+valid_passwords = parse_results.map do |p|
+  v = validate(**p)
+  count+=1 if v
+  [p, v]
+end
+
+pp valid_passwords, count
+
 # Part 2
