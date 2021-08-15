@@ -43,4 +43,4 @@ def adjacent?((x, y, z))
   x + 1 == y && y + 1 == z
 end
 
-pp slices(3, sorted_locations).select { |slice| !adjacent?(slice) }
+pp(slices(3, sorted_locations).reject { |slice| adjacent?(slice) })
