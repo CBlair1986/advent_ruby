@@ -24,3 +24,23 @@ locations = tickets.map do |ticket|
 end
 
 pp locations.map { |l| l[2] }.max
+
+# Part 2
+sorted_locations = locations.map { |l| l[2] }.sort
+
+def slices(slice_size, ary)
+  results = []
+  last_index = ary.length - slice_size
+  curr = 0
+  while curr < last_index
+    results.append ary.slice(curr, slice_size)
+    curr += 1
+  end
+  results
+end
+
+def adjacent?((x, y, z))
+  x + 1 == y && y + 1 == z
+end
+
+pp slices(3, sorted_locations).select { |slice| !adjacent?(slice) }
