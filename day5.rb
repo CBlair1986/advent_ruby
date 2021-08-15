@@ -23,7 +23,9 @@ locations = tickets.map do |ticket|
   [row_num, col_num, row_num * 8 + col_num]
 end
 
-pp locations.map { |l| l[2] }.max
+number_of_seats = locations.map { |l| l[2] }.max
+
+puts "Part 1: #{number_of_seats}"
 
 # Part 2
 sorted_locations = locations.map { |l| l[2] }.sort
@@ -43,4 +45,8 @@ def adjacent?((x, y, z))
   x + 1 == y && y + 1 == z
 end
 
-pp(slices(3, sorted_locations).reject { |slice| adjacent?(slice) })
+s = slices(3, sorted_locations)
+non_adjacents = s.reject { |slice| adjacent?(slice) }
+a, b = non_adjacents.reduce(&:intersection)
+
+puts "Part 2 #{(a + b) / 2}"
