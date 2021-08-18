@@ -45,19 +45,19 @@ end
 def find_bag_type(bag_type, bags_list)
   # Which ones have a shiny gold?
   container_bags = # There's got to be a better way to do this?!
-    select_bags(bag_type, bags_list)
+    select_bags_list(bag_type, bags_list)
   finished_container_bags = Set.new
   until container_bags.empty?
     container_bag_type = container_bags.pop
     container_bags +=
-      select_bags(container_bag_type, bags_list)
+      select_bags_list(container_bag_type, bags_list)
     finished_container_bags << container_bag_type
   end
   finished_container_bags
 end
 
 # Returns a list of bags from the given list that contain a bag of the given type
-def select_bags(bag_type, bags_list)
+def select_bags_list(bag_type, bags_list)
   bags_list.select { |bag| bag[:bag_contents].map { |b| b[:bag_type] }.member? bag_type }.map { |b| b[:bag_type] }
 end
 
