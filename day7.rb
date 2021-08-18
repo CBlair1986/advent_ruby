@@ -42,6 +42,26 @@ def parse_number_and_bag(str)
   { bag_quantity: number, bag_type: front }
 end
 
-pp(input.lines.map(&:strip).map { |line| parse_line line })
+def find_bag_type(bag_type, bags_list)
+  # Which ones have a shiny gold?
+  container_bags = # There's got to be a better way to do this?!
+    bags_list.select { |bag| bag[:bag_contents].map { |b| b[:bag_type] }.member? bag_type }.map { |b| b[:bag_type] }
+  finished_container_bags = Set.new
+  until container_bags.empty?
+    container_bag_type = container_bags.pop
+    container_bags +=
+      bags_list.select do |bag|
+        bag[:bag_contents].map do |b|
+          b[:bag_type]
+        end.member? container_bag_type
+      end.map { |b| b[:bag_type] }
+    finished_container_bags << container_bag_type
+  end
+  finished_container_bags
+end
+
+bags_list = input.lines.map(&:strip).map { |line| parse_line line }
+
+pp(find_bag_type('shiny gold', bags_list).count)
 
 # Part 2
