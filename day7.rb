@@ -39,6 +39,8 @@ def parse_number_and_bag(str)
   rest = tokens.join ' '
   front, _back = rest.split ' bag'
 
+  return if number == 'no'
+
   { bag_quantity: number, bag_type: front }
 end
 
@@ -47,7 +49,7 @@ def find_bag_type(bag_type, bags_list)
   container_bags = # There's got to be a better way to do this?!
     select_bags_list(bag_type, bags_list)
   finished_container_bags = Set.new
-  until container_bags.empty?
+  until container_bags.nil? || container_bags.empty?
     container_bag_type = container_bags.pop
     container_bags +=
       select_bags_list(container_bag_type, bags_list)
@@ -58,7 +60,16 @@ end
 
 # Returns a list of bags from the given list that contain a bag of the given type
 def select_bags_list(bag_type, bags_list)
-  bags_list.select { |bag| bag[:bag_contents].map { |b| b[:bag_type] }.member? bag_type }.map { |b| b[:bag_type] }
+  selected = bags_list.select do |bag|
+    return nil if bag.nil?
+
+    bag[:bag_contents].map do |b|
+      return nil if b.nil?
+
+      [:bag_type]
+    end.member? bag_type
+  end
+  selected.map { |b| b[:bag_type] }
 end
 
 bags_list = input.lines.map(&:strip).map { |line| parse_line line }
@@ -74,14 +85,16 @@ puts "Part 1: #{part1_count}"
 def find_nested_bags(bag_type, bags_list)
   target_bag = bags_list.select { |bag| bag[:bag_type] == bag_type }[0]
   # Can I just use recursion?
-  unless target_bag.nil?
-    if target_bag.key?(:bag_contents)
-      contents = target_bag[:bag_contents].map do |b|
-        find_nested_bags(b[:bag_type], bags_list)
-      end
+  return if target_bag.nil?
+
+  if target_bag.key?(:bag_contents)
+    contents = target_bag[:bag_contents].map do |b|
+      return nil if b.nil?
+
+      find_nested_bags(b[:bag_type], bags_list)
     end
-    [target_bag, contents]
   end
+  [target_bag, contents]
 end
 
 pp find_nested_bags('shiny gold', bags_list)
