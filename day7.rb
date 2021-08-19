@@ -66,3 +66,6 @@ bags_list = input.lines.map(&:strip).map { |line| parse_line line }
 pp(find_bag_type('shiny gold', bags_list).count)
 
 # Part 2
+
+# We need to find out the total number of bags that a shiny gold bag needs to contain, which is like the opposite of
+# what we did above.
