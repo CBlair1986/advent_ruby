@@ -63,9 +63,25 @@ end
 
 bags_list = input.lines.map(&:strip).map { |line| parse_line line }
 
-pp(find_bag_type('shiny gold', bags_list).count)
+part1_count = find_bag_type('shiny gold', bags_list).count
+puts "Part 1: #{part1_count}"
 
 # Part 2
 
 # We need to find out the total number of bags that a shiny gold bag needs to contain, which is like the opposite of
-# what we did above.
+# what we did above. We need to find the bags in the shiny gold bag, but also remember their quantities.
+
+def find_nested_bags(bag_type, bags_list)
+  target_bag = bags_list.select { |bag| bag[:bag_type] == bag_type }[0]
+  # Can I just use recursion?
+  unless target_bag.nil?
+    if target_bag.key?(:bag_contents)
+      contents = target_bag[:bag_contents].map do |b|
+        find_nested_bags(b[:bag_type], bags_list)
+      end
+    end
+    [target_bag, contents]
+  end
+end
+
+pp find_nested_bags('shiny gold', bags_list)
