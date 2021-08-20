@@ -61,10 +61,10 @@ end
 # Returns a list of bags from the given list that contain a bag of the given type
 def select_bags_list(bag_type, bags_list)
   selected = bags_list.select do |bag|
-    return nil if bag.nil?
+    next if bag.nil?
 
     bag[:bag_contents].map do |b|
-      return nil if b.nil?
+      next if b.nil?
 
       [:bag_type]
     end.member? bag_type
@@ -89,7 +89,7 @@ def find_nested_bags(bag_type, bags_list)
 
   if target_bag.key?(:bag_contents)
     contents = target_bag[:bag_contents].map do |b|
-      return nil if b.nil?
+      next if b.nil?
 
       find_nested_bags(b[:bag_type], bags_list)
     end
@@ -98,3 +98,21 @@ def find_nested_bags(bag_type, bags_list)
 end
 
 pp find_nested_bags('shiny gold', bags_list)
+
+# Time for a redo of this thinking, I'm going to parse the bags and put them all into a hash so that I can look them up
+
+bags = {}
+
+bags_list.each do |bag|
+  bags[bag[:bag_type]] = bag[:bag_contents].clone
+end
+
+pp bags
+
+# Thinking about this algorithm a bit, how do I want to build the tree? I'm picturing something like:
+# shiny gold
+#   vibrant green x5
+#   pale violet x4
+#   dull olive x4
+#   pale white x3
+# and then for each bag in this list, populate with their contents and number, and at the end we have a sum of products-type situation...
