@@ -97,8 +97,6 @@ def find_nested_bags(bag_type, bags_list)
   [target_bag, contents]
 end
 
-pp find_nested_bags('shiny gold', bags_list)
-
 # Time for a redo of this thinking, I'm going to parse the bags and put them all into a hash so that I can look them up
 
 bags = {}
@@ -107,12 +105,57 @@ bags_list.each do |bag|
   bags[bag[:bag_type]] = bag[:bag_contents].clone
 end
 
-pp bags
-
 # Thinking about this algorithm a bit, how do I want to build the tree? I'm picturing something like:
 # shiny gold
 #   vibrant green x5
 #   pale violet x4
 #   dull olive x4
 #   pale white x3
-# and then for each bag in this list, populate with their contents and number, and at the end we have a sum of products-type situation...
+# and then for each bag in this list, populate with their contents and number, and at the end we have a
+# sum of products-type situation...
+
+# Alternately, we could just have something like:
+# shiny gold
+#   vibrant green
+#   vibrant green
+#   vibrant green
+#   vibrant green
+#   vibrant green
+#   pale violet
+#   pale violet
+#   pale violet
+#   pale violet
+#   dull olive
+#   dull olive
+#   dull olive
+#   dull olive
+#   pale white
+#   pale white
+#   pale white
+# where all the duplicate bags are present, and then we wouldn't have to do any multiplication, just visit each node
+# and their children and keep a tally going.
+
+# How is this structured? Nested lists? The first element is the 'node' and the second is a list of that node's
+# children?
+
+def collect_children(elem, list)
+  contents = list[elem] # This is an array of hashes
+
+  return [elem, nil] if contents.empty? # If this array is empty we've hit 'bottom', there are no children
+
+  children = []
+
+  contents.each do |bag|
+    next if bag.nil?
+
+    bag[:bag_quantity].to_i.times do
+      children.append bag[:bag_type]
+    end
+  end
+
+  # Now children is just a flat array of bag types
+  [elem, children.map { |type| collect_children(type, list) }] # This should get us a nested list of all
+  # the children's bags...
+end
+
+puts "Part 2: #{collect_children('shiny gold', bags)[1].flatten.count}"
