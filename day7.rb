@@ -63,6 +63,6 @@ end
 
 bags_list = input.lines.map(&:strip).map { |line| parse_line line }
 
-pp(find_bag_type('shiny gold', bags_list).count)
+puts "Part 1: #{find_bag_type('shiny gold', bags_list).count}"
 
 # Part 2
