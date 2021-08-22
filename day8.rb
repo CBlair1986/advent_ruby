@@ -4,7 +4,7 @@ input = File.read('input/day8.txt').lines.map(&:strip)
 
 # Part 1
 
-# runs the program given by `listing`
+# runs the program given by +listing+
 class ProgramRunner
   attr_accessor :logging_enabled
 
@@ -53,7 +53,7 @@ class ProgramRunner
   end
 
   def run
-    until s = step
+    until (s = step)
       puts line if @logging_enabled
     end
     s
@@ -67,7 +67,7 @@ class ProgramRunner
       when 'nop' then 'jmp'
       else command
       end
-    @listing[line_number] = new_command + ' ' + argument
+    @listing[line_number] = "#{new_command} #{argument}"
   end
 end
 
@@ -80,6 +80,8 @@ puts "Part 1: #{s}"
 
 # Part 2
 
+# runs all possible programs given by +listing+ where one instruction has been flipped from 'nop' to 'jmp'
+# or 'jmp' to 'nop'.
 class ProgramRunnerRunner
   def initialize(listing)
     @original = listing
@@ -105,6 +107,6 @@ prr = ProgramRunnerRunner.new(input)
 
 results = prr.run
 
-ended = results.select { |(ended, _accumulator)| ended }
+ended = results.select { |(is_ended, _accumulator)| is_ended }
 
 puts "Part 2: #{ended[0]}"
