@@ -46,4 +46,26 @@ end
 
 input.filter! { |(is_sum, _num)| !is_sum }
 
-puts "Part 1: #{input.dig(0, 1)}"
+number = input.dig(0, 1)
+
+puts "Part 1: #{number}"
+
+# Part 2
+
+input = File.read('input/day9.txt').lines.map(&:to_i)
+
+# For this I will need to slice the input into segments length 2..n where n = input.count
+
+slices = []
+
+(2..input.count).each do |i|
+  (0..input.count - i).each do |j|
+    slices.append(input.slice(j, i))
+  end
+end
+
+results = slices.select! { |s| s.reduce(&:+) == number }[0]
+
+sum = results.min + results.max
+
+puts "Part 2: #{sum}"
