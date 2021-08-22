@@ -19,3 +19,7 @@ three_gaps = zipped_inputs.select { |(one, two)| two - one == 3 }
 # pp input, one_gaps, one_gaps.count, three_gaps, three_gaps.count
 
 puts "Part 1: #{(one_gaps.count + 1) * (three_gaps.count + 1)}"
+
+# Part 2
+
+# We have to count the different arrangements for connection between 0 and 3 + max.
