@@ -82,7 +82,7 @@ REQUIRED = %w[byr iyr eyr hgt hcl ecl pid].map(&:to_sym).freeze
 def validate(chunk)
   if REQUIRED.all? { |sym| chunk[sym] }
     results = chunk.map do |(k, v)|
-      puts "#{k}, #{v}" unless RULES[k.to_sym][v]
+      # puts "#{k}, #{v}" unless RULES[k.to_sym][v]
       RULES[k.to_sym][v]
     end
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'set'
+
 input = File.read('input/day6.txt')
 
 # Part 1
@@ -25,8 +27,6 @@ def groups_sum(groups)
   end
   total
 end
-
-pp g
 
 puts "Part 1: #{groups_sum(g)}"
 
