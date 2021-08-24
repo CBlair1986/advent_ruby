@@ -49,7 +49,7 @@ valid_passwords = parse_results1.select do |p|
   validate1(**p)
 end
 
-puts "Part 1 count: #{valid_passwords.length}"
+puts "Part 1: #{valid_passwords.length}"
 
 # Part 2
 input = File.read('input/day2.txt')
@@ -83,4 +83,4 @@ valid_passwords2 = parse_results2.select do |p|
   validate2(**p)
 end
 
-puts "Part 2 count: #{valid_passwords2.length}"
+puts "Part 2: #{valid_passwords2.length}"

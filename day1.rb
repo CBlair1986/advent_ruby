@@ -3,7 +3,6 @@
 # Day 1
 
 # Part 1
-puts 'Part 1'
 # Find the two numbers that sum to 2020 and multiply them to get the answer
 
 # Read in the input file
@@ -44,13 +43,13 @@ def comb(ary)
   ps
 end
 
-input = File.read('input/day1.txt').lines.map(&:to_i)
+# input = File.read('input/day1.txt').lines.map(&:to_i)
 
-combs = comb(input).map do |c|
-  [c[0] + c[1]] + c
-end
+# combs = comb(input).map do |c|
+#   [c[0] + c[1]] + c
+# end
 
-pp combs == pairs
+# pp combs == pairs
 
 # Pairs is populated with every pair and their sum, now we need to filter it down
 target = []
@@ -61,11 +60,11 @@ end
 
 # Take the first match here:
 
-t = target.first
+# t = target.first
 
 # Then print the match and the product of the two matched numbers
 
-pp t, t[1] * t[2]
+# pp t, t[1] * t[2]
 
 # So that's pretty easy to do, but I'm positive that there's an even easier way using collections...
 
@@ -79,10 +78,11 @@ input.combination(2) do |c|
   target.append c if c[0] + c[1] == 2020
 end
 
-pp target.first.reduce :*
+value = target.first.reduce :*
+
+puts "Part 1: #{value}"
 
 # Part 2
-puts 'Part 2'
 
 # Find the three numbers that sum to 2020 and return their product
 
@@ -109,9 +109,9 @@ end
 
 # Now triples should have a collection of all the triples present in the set of numbers, without any duplicates
 
-triples.map do |(x, y, z)|
-  puts x * y * z if x + y + z == 2020
-end
+# triples.map do |(x, y, z)|
+#   puts x * y * z if x + y + z == 2020
+# end
 
 # And again, that's pretty easy to do, but...
 
@@ -125,4 +125,6 @@ input.combination(3) do |c|
   target.append c if c[0] + c[1] + c[2] == 2020
 end
 
-pp target.first.reduce :*
+value = target.first.reduce :*
+
+puts "Part 2: #{value}"

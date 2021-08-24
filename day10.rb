@@ -2,7 +2,12 @@
 
 # Part 1
 
-input = File.read('input/day10.txt').lines.map(&:to_i).sort
+input = File.read('input/day10.txt').lines.map(&:to_i)
+input << 0
+input << input.max + 3
+
+input = input.sort
+
 lagged_input = input.clone
 lagged_input.shift
 
@@ -18,8 +23,14 @@ three_gaps = zipped_inputs.select { |(one, two)| two - one == 3 }
 
 # pp input, one_gaps, one_gaps.count, three_gaps, three_gaps.count
 
-puts "Part 1: #{(one_gaps.count + 1) * (three_gaps.count + 1)}"
+value = one_gaps.count * three_gaps.count
+
+puts "Part 1: #{value}"
 
 # Part 2
 
 # We have to count the different arrangements for connection between 0 and 3 + max.
+
+max_connected_adapters = zipped_inputs
+
+# We need to count how many different ways we can 'bridge' the gaps between the adaptors,

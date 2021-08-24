@@ -60,7 +60,7 @@ input = File.read('input/day9.txt').lines.map(&:to_i)
 
 slices = []
 
-# This is the part that gets *really* slow...
+# TODO: This is the part that gets *really* slow...
 
 (2..input.count).each do |i|
   (0..input.count - i).each do |j|

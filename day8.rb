@@ -76,7 +76,7 @@ pr = ProgramRunner.new(input)
 
 s = pr.run
 
-puts "Part 1: #{s}"
+puts "Part 1: #{s[1]}"
 
 # Part 2
 
@@ -109,4 +109,4 @@ results = prr.run
 
 ended = results.select { |(is_ended, _accumulator)| is_ended }
 
-puts "Part 2: #{ended[0]}"
+puts "Part 2: #{ended[0][1]}"
