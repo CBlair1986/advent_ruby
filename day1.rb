@@ -16,32 +16,33 @@ numbers = lines.map(&:to_i)
 
 # What's a good way to pair up the numbers?
 
-pairs = []
-current_num = 0
+# pairs = numbers.each_cons(2)
+# pairs = []
+# current_num = 0
 
-nums = numbers.clone
+# nums = numbers.clone
 
-until nums.empty?
-  current_num = nums.pop
-  nums.each do |n|
-    pairs += [[current_num + n, current_num, n]]
-  end
-end
+# until nums.empty?
+#   current_num = nums.pop
+#   nums.each do |n|
+#     pairs += [[current_num + n, current_num, n]]
+#   end
+# end
 
 # This whole thing above could be turned into a function
 
-def comb(ary)
-  ps = []
-  ns = ary.clone
-  cn = 0
-  until ns.empty?
-    cn = ns.pop
-    ns.each do |n|
-      ps.append [cn, n]
-    end
-  end
-  ps
-end
+# def comb(ary)
+#   ps = []
+#   ns = ary.clone
+#   cn = 0
+#   until ns.empty?
+#     cn = ns.pop
+#     ns.each do |n|
+#       ps.append [cn, n]
+#     end
+#   end
+#   ps
+# end
 
 # input = File.read('input/day1.txt').lines.map(&:to_i)
 
@@ -52,11 +53,11 @@ end
 # pp combs == pairs
 
 # Pairs is populated with every pair and their sum, now we need to filter it down
-target = []
+# target = []
 
-pairs.each do |p|
-  target.append p if p[0] == 2020
-end
+# pairs.each do |p|
+#   target.append p if p[0] == 2020
+# end
 
 # Take the first match here:
 
