@@ -34,41 +34,65 @@ puts "Part 1: #{value}"
 # hit the 'end' node, but that sounds pretty painful.
 
 # Node is a utility class that encodes the structure of a tree.
-class Node
-  def initialize(name)
-    @name = name
-    @children = []
-  end
+# class Node
+#   attr_accessor :value, :children
 
-  # This should get us a 'trail' of nodes to the one we're looking for.
-  def find(name)
-    return this if name == @name
+#   def initialize(value)
+#     @value = value
+#     @children = []
+#   end
 
-    children = @children.select { |child| child.find(name) }
-    [this, children]
-  end
+#   def to_a
+#     [@value, @children.map(&:to_a)]
+#   end
 
-  def add_child(name)
-    @children.append(Node.new(name))
-  end
+#   def count
+#     return 1 if @children.empty?
 
-  def add_child_under(parent, name)
-    return add_child(name) if @name == parent
-    return false if @children.empty?
-
-    @children.map { |child| child.add_child_under(parent, name) }
-  end
-end
+#     @children.map(&:count).reduce(&:+)
+#   end
+# end
 
 part_two = input.clone
 
-n = Node.new(part_two[0])
+# n = Node.new(part_two[0])
+
+# front = [n]
+
+# part_two.each do |num|
+#   children = part_two.select { |i| (1..3).cover?(i - num) }
+#   front.each do |parent|
+#     next unless parent.value == num
+
+#     cs = children.map { |c| Node.new(c) }
+#     parent.children = cs
+#     front += cs
+#     front.delete parent
+#   end
+#   puts front.count
+# end
+
+# pp n.count
+
+# I could just use a single hash, and have each n be the key for the n+1..n+3 children
+
+links = {}
+old_links = {}
 
 part_two.each do |num|
   children = part_two.select { |i| (1..3).cover?(i - num) }
-  children.each do |child|
-    n.add_child_under(num, child)
-  end
+  links[num] = children
 end
 
-pp n
+pp links.map { |(_k, v)| v.count }.take(links.length - 1).reduce(&:+)
+
+# Maybe I can build a trail back up to the outlet?
+# until (count = links.reject { |_k, v| v.flatten.empty? }.count == 1)
+#   old_links = links.clone
+#   puts count
+#   links = links.transform_values { |values| values.map { |v| old_links[v] }.flatten }
+# end
+
+# pp links
+
+puts input
