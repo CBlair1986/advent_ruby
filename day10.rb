@@ -29,8 +29,46 @@ puts "Part 1: #{value}"
 
 # Part 2
 
-# We have to count the different arrangements for connection between 0 and 3 + max.
+# We need to count how many different ways we can 'bridge' the gaps between the adaptors. I could end up doing an
+# imperative looping thing where I make a tree of all the accessible nodes from the current node, and iterate until I
+# hit the 'end' node, but that sounds pretty painful.
 
-max_connected_adapters = zipped_inputs
+# Node is a utility class that encodes the structure of a tree.
+class Node
+  def initialize(name)
+    @name = name
+    @children = []
+  end
 
-# We need to count how many different ways we can 'bridge' the gaps between the adaptors,
+  # This should get us a 'trail' of nodes to the one we're looking for.
+  def find(name)
+    return this if name == @name
+
+    children = @children.select { |child| child.find(name) }
+    [this, children]
+  end
+
+  def add_child(name)
+    @children.append(Node.new(name))
+  end
+
+  def add_child_under(parent, name)
+    return add_child(name) if @name == parent
+    return false if @children.empty?
+
+    @children.map { |child| child.add_child_under(parent, name) }
+  end
+end
+
+part_two = input.clone
+
+n = Node.new(part_two[0])
+
+part_two.each do |num|
+  children = part_two.select { |i| (1..3).cover?(i - num) }
+  children.each do |child|
+    n.add_child_under(num, child)
+  end
+end
+
+pp n
