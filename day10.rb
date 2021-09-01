@@ -76,23 +76,47 @@ part_two = input.clone
 
 # I could just use a single hash, and have each n be the key for the n+1..n+3 children
 
-links = {}
-old_links = {}
+# Let's try a graph
 
-part_two.each do |num|
-  children = part_two.select { |i| (1..3).cover?(i - num) }
-  links[num] = children
+# DirectedGraph provides an API to interact with a graph structure.
+class DirectedGraph
+  def initialize
+    @vertices = Set.new
+    @edges = Set.new
+  end
+
+  def add_vertex(value)
+    @vertices.add value
+  end
+
+  def add_edge(value, another_value)
+    add_vertex value
+    add_vertex another_value
+    @edges.add [value, another_value]
+  end
+
+  def get_connections(value)
+    @edges.select { |a, _b| a == value }
+  end
 end
 
-pp links.map { |(_k, v)| v.count }.take(links.length - 1).reduce(&:+)
+g = DirectedGraph.new
 
-# Maybe I can build a trail back up to the outlet?
-# until (count = links.reject { |_k, v| v.flatten.empty? }.count == 1)
-#   old_links = links.clone
-#   puts count
-#   links = links.transform_values { |values| values.map { |v| old_links[v] }.flatten }
-# end
+input.each do |n|
+  children = input.select { |num| (1..3).cover? num - n }
+  children.each do |m|
+    g.add_edge n, m
+  end
+end
 
-# pp links
+start = 0
+target = input.max
 
-puts input
+def follow_connections(value, target, g)
+  return 1 if value == target
+
+  connections = g.get_connections(value).map { |_a, b| b }
+  connections.map { |v| follow_connections v, target, g }.reduce(&:+)
+end
+
+puts follow_connections(start, target, g)
