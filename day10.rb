@@ -79,44 +79,46 @@ part_two = input.clone
 # Let's try a graph
 
 # DirectedGraph provides an API to interact with a graph structure.
-class DirectedGraph
-  def initialize
-    @vertices = Set.new
-    @edges = Set.new
-  end
+# class DirectedGraph
+#   def initialize
+#     @vertices = Set.new
+#     @edges = Set.new
+#   end
 
-  def add_vertex(value)
-    @vertices.add value
-  end
+#   def add_vertex(value)
+#     @vertices.add value
+#   end
 
-  def add_edge(value, another_value)
-    add_vertex value
-    add_vertex another_value
-    @edges.add [value, another_value]
-  end
+#   def add_edge(value, another_value)
+#     add_vertex value
+#     add_vertex another_value
+#     @edges.add [value, another_value]
+#   end
 
-  def get_connections(value)
-    @edges.select { |a, _b| a == value }
-  end
-end
+#   def get_connections(value)
+#     @edges.select { |a, _b| a == value }
+#   end
+# end
 
-g = DirectedGraph.new
+# g = DirectedGraph.new
 
-input.each do |n|
-  children = input.select { |num| (1..3).cover? num - n }
-  children.each do |m|
-    g.add_edge n, m
-  end
-end
+# input.each do |n|
+#   children = input.select { |num| (1..3).cover? num - n }
+#   children.each do |m|
+#     g.add_edge n, m
+#   end
+# end
 
-start = 0
-target = input.max
+# start = 0
+# target = input.max
 
-def follow_connections(value, target, g)
-  return 1 if value == target
+# def follow_connections(value, target, g)
+#   return 1 if value == target
 
-  connections = g.get_connections(value).map { |_a, b| b }
-  connections.map { |v| follow_connections v, target, g }.reduce(&:+)
-end
+#   connections = g.get_connections(value).map { |_a, b| b }
+#   connections.map { |v| follow_connections v, target, g }.reduce(&:+)
+# end
 
-puts follow_connections(start, target, g)
+# puts follow_connections(start, target, g)
+
+p(part_two.each_cons(2).map { |a, b| b - a }.chunk { |n| n == 3 }.reject { |a, _b| a })
