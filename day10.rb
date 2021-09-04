@@ -121,4 +121,4 @@ part_two = input.clone
 
 # puts follow_connections(start, target, g)
 
-p(part_two.each_cons(2).map { |a, b| b - a }.chunk { |n| n == 3 }.reject { |a, _b| a })
+p(part_two.each_cons(2).map { |a, b| b - a }.chunk { |n| n == 3 }.to_a)
