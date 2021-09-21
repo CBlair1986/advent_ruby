@@ -6,7 +6,7 @@ input = File.read('input/day10.txt').lines.map(&:to_i)
 input << 0
 input << input.max + 3
 
-input = input.sort
+input.sort!
 
 lagged_input = input.clone
 lagged_input.shift
@@ -222,3 +222,20 @@ end
 pp lengths
 
 # puts "Part 2: #{lengths.reduce(&:*)}"
+
+pos = Hash.new(0)
+pos[0] = 1
+
+input.each do |a|
+  3.times do |i|
+    puts "At #{a}, iteration #{i}, adding location #{a - i - 1}: #{pos[a - i - 1]} to location #{a}: #{pos[a]}"
+    pos[a] += pos[a - i - 1]
+  end
+end
+
+puts pos.values.max
+
+# How does this work?
+# At each adaptor's location in the hash, we add the values of the previous three hashes together. If there was an
+# adaptor with that value, it will be some positive number, otherwise it will add the default value of the hash, zero.
+# So, basically it's approaching the problem from the opposite direction.
