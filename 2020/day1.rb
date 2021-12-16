@@ -6,7 +6,7 @@
 # Find the two numbers that sum to 2020 and multiply them to get the answer
 
 # Read in the input file
-input = File.read('./input/day1.txt')
+input = File.read('input/day1.txt')
 
 # Transform the string into lines
 
@@ -71,7 +71,7 @@ numbers = lines.map(&:to_i)
 
 # The better way (21 lines vs 6):
 
-input = File.read('./input/day1.txt').lines.map(&:to_i)
+input = File.read('input/day1.txt').lines.map(&:to_i)
 
 target = []
 
@@ -90,7 +90,7 @@ puts "Part 1: #{value}"
 # The hard way, just to figure it out algorithmically
 # Basically, just append each number to the pairs made with the rest of the list
 
-input = File.read('./input/day1.txt')
+input = File.read('input/day1.txt')
 lines = input.lines
 numbers = lines.map(&:to_i)
 
