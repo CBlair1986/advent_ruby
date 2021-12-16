@@ -6,13 +6,13 @@
 # Find the two numbers that sum to 2020 and multiply them to get the answer
 
 # Read in the input file
-input = File.read('input/day1.txt')
+# input = File.read('input/day1.txt')
 
 # Transform the string into lines
 
-lines = input.lines()
+# lines = input.lines()
 
-numbers = lines.map(&:to_i)
+# numbers = lines.map(&:to_i)
 
 # What's a good way to pair up the numbers?
 
