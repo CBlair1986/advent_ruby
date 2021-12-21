@@ -5,5 +5,7 @@ task :default do
 end
 
 task :day, [:year, :day] do |_t, args|
-  FileList["./#{args.year}/day#{args.day}.rb"].each { |file| ruby file }
+  Dir.chdir args.year {
+    ruby "day#{args.day}.rb"
+  }
 end

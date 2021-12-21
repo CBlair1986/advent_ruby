@@ -53,5 +53,5 @@ sequence.split(',').map(&:to_i).each do |n|
   winning_number.push n
 end
 
-pp finished, winning_number, finished.first.unmarked_sum * winning_number.first,
-   finished.last.unmarked_sum * winning_number.last
+puts "Part 1: #{finished.first.unmarked_sum * winning_number.first}"
+puts "Part 2: #{finished.last.unmarked_sum * winning_number.last}"
