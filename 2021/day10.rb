@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 input = File.read('input/day10.txt').lines.map(&:strip)
 
 # rubocop:disable Metrics/[MethodLength, AbcSize]
