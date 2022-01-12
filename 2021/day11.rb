@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day11.txt')
             .lines
             .map(&:strip)
