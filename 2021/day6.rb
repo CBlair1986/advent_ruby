@@ -79,6 +79,7 @@ end
 256.times do |day|
   zero_fish = fish.shift
   fish.push zero_fish
-  puts "On day #{day + 1}: #{fish.reduce(&:+)}"
-  fish[7] += fish[0]
+  fish[7] += fish[0] unless day == 255
 end
+
+puts "Part 2: #{fish.reduce(&:+)}"
