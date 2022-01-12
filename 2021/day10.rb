@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('input/day10.txt').lines.map(&:strip)
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day10.txt').lines.map(&:strip)
 
 # rubocop:disable Metrics/[MethodLength, AbcSize]
 def find_mismatch(line)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('input/day5.txt').lines.map(&:split)
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day5.txt').lines.map(&:split)
 
 ## Has to do with parsing and tracking the state
 class LineGrid

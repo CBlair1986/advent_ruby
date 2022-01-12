@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-input = File.read('input/day9.txt').lines.map { |line| line.strip.chars.map(&:to_i) }
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day9.txt').lines.map do |line|
+  line.strip.chars.map(&:to_i)
+end
 
 ## Handles the heightmapping
 class Cell

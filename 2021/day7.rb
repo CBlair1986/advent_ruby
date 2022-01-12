@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-crab_positions = File.read('input/day7.txt').split(',').map(&:to_i)
+crab_positions = File.read('/Users/cblair1986/Documents/adventofcode/2021/day7.txt').split(',').map(&:to_i)
 
 max_bound = crab_positions.max
 min_bound = crab_positions.min
@@ -36,7 +36,9 @@ until min_bound == max_bound
 end
 puts "Part 1: used #{fuel_usage} fuel"
 
-crab_positions = File.read('input/day7.txt').split(',').map { |str| [str.to_i, str.to_i] }
+crab_positions = File.read('/Users/cblair1986/Documents/adventofcode/2021/day7.txt').split(',').map do |str|
+  [str.to_i, str.to_i]
+end
 
 max_bound = crab_positions.map(&:last).max
 min_bound = crab_positions.map(&:last).min

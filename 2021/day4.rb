@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('input/day4.txt').split("\n\n")
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day4.txt').split("\n\n")
 
 sequence = input.shift
 

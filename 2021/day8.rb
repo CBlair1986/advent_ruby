@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('input/day8.txt').lines.map { |line| line.split('|') }
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day8.txt').lines.map { |line| line.split('|') }
 
 left_sides = input.map(&:first)
 left_sides_symbols = left_sides.map { |line| line.split.map { |word| word.chars.sort.join } }
@@ -16,7 +16,7 @@ puts "Part 1: #{part1}"
 
 GROUPS = %w[abcefg cf acdeg acdfg bcdf abdfg abdefg acf abcdefg abcdfg].map(&:chars).freeze
 
-input = File.read('input/day8.txt').lines
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day8.txt').lines
 
 # The layout of a cell is:
 

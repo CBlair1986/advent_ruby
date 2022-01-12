@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-input = File.read('input/day2.txt').lines.map(&:split).map { |a, b| [a.to_sym, b.to_i] }
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day2.txt').lines.map(&:split).map do |a, b|
+  [a.to_sym, b.to_i]
+end
 
 ## Sub processes the command list given by the input
 class Sub

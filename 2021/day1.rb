@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('input/day1.txt')
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day1.txt')
             .lines
             .map(&:to_i)
 lagged_input = input.clone

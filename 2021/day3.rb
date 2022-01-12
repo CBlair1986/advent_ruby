@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('input/day3.txt').lines.map(&:strip)
+input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day3.txt').lines.map(&:strip)
 
 freqs = []
 
