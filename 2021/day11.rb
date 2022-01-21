@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day11.txt')
+input = File.read("input/day11.txt")
             .lines
             .map(&:strip)
             .map(&:chars)
@@ -90,13 +90,13 @@ class Cell
   def inspect
     return @energy.to_s unless @flashed
 
-    '*'
+    "*"
   end
 
   def to_s
     return @energy.to_s unless @flashed
 
-    '*'
+    "*"
   end
 end
 

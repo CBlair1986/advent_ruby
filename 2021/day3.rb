@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day3.txt').lines.map(&:strip)
+input = File.read("input/day3.txt").lines.map(&:strip)
 
 freqs = []
 
@@ -35,11 +35,11 @@ co_candidates = input.clone.map(&:chars)
   oxy_digits = oxy_candidates.map { |line| line[idx] }
   co_digits = co_candidates.map { |line| line[idx] }
 
-  oxy_digit = '0'
-  co_digit = '1'
+  oxy_digit = "0"
+  co_digit = "1"
 
-  oxy_digit = '1' if oxy_digits.count('1') >= oxy_digits.count('0')
-  co_digit = '0' if co_digits.count('1') >= co_digits.count('0')
+  oxy_digit = "1" if oxy_digits.count("1") >= oxy_digits.count("0")
+  co_digit = "0" if co_digits.count("1") >= co_digits.count("0")
 
   oxy_candidates = oxy_candidates.filter { |line| line[idx] == oxy_digit } if oxy_candidates.count > 1
   co_candidates = co_candidates.filter { |line| line[idx] == co_digit } if co_candidates.count > 1

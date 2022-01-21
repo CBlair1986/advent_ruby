@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-crab_positions = File.read('/Users/cblair1986/Documents/adventofcode/2021/day7.txt').split(',').map(&:to_i)
+crab_positions = File.read("input/day7.txt").split(",").map(&:to_i)
 
 max_bound = crab_positions.max
 min_bound = crab_positions.min
@@ -36,7 +36,7 @@ until min_bound == max_bound
 end
 puts "Part 1: used #{fuel_usage} fuel"
 
-crab_positions = File.read('/Users/cblair1986/Documents/adventofcode/2021/day7.txt').split(',').map do |str|
+crab_positions = File.read("input/day7.txt").split(",").map do |str|
   [str.to_i, str.to_i]
 end
 
@@ -54,13 +54,13 @@ end
 
 until min_bound == max_bound
   cost_at_min = crab_positions
-                .filter { |crab| crab.last == min_bound }
-                .map { |crab| calculate_cost crab }
-                .reduce(&:+)
+    .filter { |crab| crab.last == min_bound }
+    .map { |crab| calculate_cost crab }
+    .reduce(&:+)
   cost_at_max = crab_positions
-                .filter { |crab| crab.last == max_bound }
-                .map { |crab| calculate_cost crab }
-                .reduce(&:+)
+    .filter { |crab| crab.last == max_bound }
+    .map { |crab| calculate_cost crab }
+    .reduce(&:+)
 
   if cost_at_min > cost_at_max
     # moving max is cheaper

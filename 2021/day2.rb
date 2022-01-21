@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day2.txt').lines.map(&:split).map do |a, b|
+input = File.read("input/day2.txt").lines.map(&:split).map do |a, b|
   [a.to_sym, b.to_i]
 end
 
@@ -12,7 +12,7 @@ class Sub
     @depth = 0
   end
 
-  def process1(com)
+  def process_day_one(com)
     command, amount = com
     case command
     when :forward then @position += amount
@@ -22,7 +22,7 @@ class Sub
     end
   end
 
-  def process2(com)
+  def process_day_two(com)
     command, amount = com
     case command
     when :forward
@@ -42,7 +42,7 @@ end
 s = Sub.new
 
 input.each do |com|
-  s.process1 com
+  s.process_day_on com
 end
 
 puts "Part 1: #{s.result}"
@@ -50,7 +50,7 @@ puts "Part 1: #{s.result}"
 s = Sub.new
 
 input.each do |com|
-  s.process2 com
+  s.process_day_two com
 end
 
 puts "Part 2: #{s.result}"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day4.txt').split("\n\n")
+input = File.read("input/day4.txt").split("\n\n")
 
 sequence = input.shift
 
@@ -44,7 +44,7 @@ boards = input.map { |section| Board.new(section) }
 finished = []
 winning_number = []
 
-sequence.split(',').map(&:to_i).each do |n|
+sequence.split(",").map(&:to_i).each do |n|
   boards.each { |b| b.fill_number n }
   next unless boards.any?(&:completed?)
 

@@ -2,7 +2,7 @@
 
 # fish cycles
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day6.txt').split(',').map(&:to_i)
+input = File.read("input/day6.txt").split(",").map(&:to_i)
 
 80.times do
   zeroes = input.filter(&:zero?)
@@ -20,7 +20,7 @@ end
 
 puts "Part 1: #{input.count}"
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day6.txt').split(',').map(&:to_i)
+input = File.read("input/day6.txt").split(",").map(&:to_i)
 
 # # Doing it naively like this doesn't work, it just runs out of memory.
 # 256.times do

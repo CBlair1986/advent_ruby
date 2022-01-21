@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day5.txt').lines.map(&:split)
+input = File.read("input/day5.txt").lines.map(&:split)
 
 ## Has to do with parsing and tracking the state
 class LineGrid
@@ -58,8 +58,8 @@ class LineGrid
   def draw(ary, ignore_diagonals: false)
     from = ary[0]
     to = ary[2]
-    from_x, from_y = from.split ','
-    to_x, to_y = to.split ','
+    from_x, from_y = from.split ","
+    to_x, to_y = to.split ","
     line(from_x.to_i, from_y.to_i, to_x.to_i, to_y.to_i, ignore_diagonals: ignore_diagonals)
   end
 
@@ -69,7 +69,7 @@ class LineGrid
 
   def to_s
     output = @board.clone
-    output.map { |i| i.join '' }.join "\n"
+    output.map { |i| i.join "" }.join "\n"
   end
 end
 

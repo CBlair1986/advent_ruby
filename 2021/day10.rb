@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day10.txt').lines.map(&:strip)
+input = File.read("input/day10.txt").lines.map(&:strip)
 
 # rubocop:disable Metrics/[MethodLength, AbcSize]
 def find_mismatch(line)
@@ -38,6 +38,7 @@ def find_mismatch(line)
   end
   [:incomplete, "#{line} + #{close_stack.reverse.join}", score]
 end
+
 # rubocop:enable all
 
 corrupts = input.map { |line| find_mismatch(line) }.filter { |item| item.first == :corrupted }.map(&:last)

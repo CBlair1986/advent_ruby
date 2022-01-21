@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day8.txt').lines.map { |line| line.split('|') }
+input = File.read("input/day8.txt").lines.map { |line| line.split("|") }
 
 left_sides = input.map(&:first)
 left_sides_symbols = left_sides.map { |line| line.split.map { |word| word.chars.sort.join } }
@@ -16,7 +16,7 @@ puts "Part 1: #{part1}"
 
 GROUPS = %w[abcefg cf acdeg acdfg bcdf abdfg abdefg acf abcdefg abcdfg].map(&:chars).freeze
 
-input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day8.txt').lines
+input = File.read("input/day8.txt").lines
 
 # The layout of a cell is:
 
@@ -37,8 +37,8 @@ input = File.read('/Users/cblair1986/Documents/adventofcode/2021/day8.txt').line
 class LineSegment
   # rubocop:disable all
   def initialize(input_line)
-    @left_symbols = input_line.split('|').first.strip.split.map { |word| word.chars.sort }
-    @right_symbols = input_line.split('|').last.strip.split.map { |word| word.chars.sort }
+    @left_symbols = input_line.split("|").first.strip.split.map { |word| word.chars.sort }
+    @right_symbols = input_line.split("|").last.strip.split.map { |word| word.chars.sort }
     @all_symbols = @left_symbols | @right_symbols
     @one = @all_symbols.filter { |group| group.length == 2 }.first
     @four = @all_symbols.filter { |group| group.length == 4 }.first
@@ -78,6 +78,7 @@ class LineSegment
     right_decoded = @right_symbols.map { |group| decoded[group] }
     [left_decoded.join.to_i, right_decoded.join.to_i]
   end
+
   # rubocop:enable all
 end
 
