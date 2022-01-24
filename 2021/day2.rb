@@ -42,7 +42,7 @@ end
 s = Sub.new
 
 input.each do |com|
-  s.process_day_on com
+  s.process_day_one com
 end
 
 puts "Part 1: #{s.result}"

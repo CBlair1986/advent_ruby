@@ -26,6 +26,11 @@ part2_first = input
 part2_second = part2_first.clone
 part2_second.shift
 
-part2 = part2_first.zip(part2_second).reject { |i| i.any?(&:nil?) }.map { |a, b| b - a }.filter(&:positive?).count
+part2 = part2_first
+  .zip(part2_second)
+  .reject { |i| i.any?(&:nil?) }
+  .map { |a, b| b - a }
+  .filter(&:positive?)
+  .count
 
 puts "Part 2: #{part2}"
