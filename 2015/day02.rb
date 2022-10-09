@@ -8,7 +8,7 @@ def extract_area(s)
 
 	parts = parts.map(&:to_i).sort
 	l, w, h = parts
-	2*l*w + 2*w*h + 2*h*l + l*w
+	(2*l*w) + (2*w*h) + (2*h*l) + (l*w)
 end
 
 input = File.read('input/day02.txt')
