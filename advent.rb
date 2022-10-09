@@ -2,4 +2,3 @@
 
 # This will be another attempt at finishing Advent of Code
 
-
