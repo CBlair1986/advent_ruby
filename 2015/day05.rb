@@ -25,3 +25,5 @@ nice_strings_count = input.filter { |s|
 }.count
 
 puts "Part 1: there are #{nice_strings_count} nice strings"
+
+puts "Part 2: there are #{nice_strings_count} nice strings"
