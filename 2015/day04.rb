@@ -8,18 +8,22 @@ def leading_zeros(s)
   s.chars.take_while {|c| c == '0'}.count
 end
 
-def find_number(s)
+def find_number(s, n)
   salt = 1
 
   plaintext = s + salt.to_s
 
-  while leading_zeros(Digest::MD5.hexdigest(plaintext)) < 5
+  while leading_zeros(Digest::MD5.hexdigest(plaintext)) < n
     salt += 1
     plaintext = s + salt.to_s
   end
   salt
 end
 
-salt = find_number(input)
+salt = find_number(input, 5)
 
 puts "Part 1: the salt is #{salt}"
+
+salt = find_number(input, 6)
+
+puts "Part 2: the salt is #{salt}"
