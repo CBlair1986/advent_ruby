@@ -26,4 +26,10 @@ nice_strings_count = input.filter { |s|
 
 puts "Part 1: there are #{nice_strings_count} nice strings"
 
+def double_pair?(s)
+end
+
+def spaced_pair?(s)
+end
+
 puts "Part 2: there are #{nice_strings_count} nice strings"
