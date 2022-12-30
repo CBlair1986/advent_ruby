@@ -28,3 +28,7 @@ pp (input.map do |sack|
     )
   )
 end).sum
+
+pp (input.each_slice(3).map do |(a, b, c)|
+  lookup_priority((Set.new(a.chars) & Set.new(b.chars) & Set.new(c.chars)).first)
+end).sum
