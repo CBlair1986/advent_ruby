@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'set'
 
 input = File.readlines('input/day03.txt').map(&:strip)
