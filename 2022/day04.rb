@@ -75,12 +75,27 @@ def parse_line(line)
   [first_range, second_range]
 end
 
-def fully_contained(range_a, range_b)
+def fully_contained?(range_a, range_b)
   range_a.cover?(range_b) || range_b.cover?(range_a)
 end
 
 input = File.readlines('input/day04.txt').filter do |line|
-  fully_contained(*parse_line(line))
+  fully_contained?(*parse_line(line))
+end
+
+puts "Final count: #{input.count}"
+
+###############################################################################
+# Part 2
+###############################################################################
+
+def any_overlap?(range_a, range_b)
+  range_a.cover?(range_b.begin) || range_a.cover?(range_b.end) ||
+    range_b.cover?(range_a.begin) || range_b.cover?(range_a.end)
+end
+
+input = File.readlines('input/day04.txt').filter do |line|
+  any_overlap?(*parse_line(line))
 end
 
 puts "Final count: #{input.count}"
