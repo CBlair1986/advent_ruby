@@ -61,3 +61,22 @@
 # example, there are 2 such pairs.
 #
 # In how many assignment pairs does one range fully contain the other?
+
+def parse_line(line)
+  sides = line.split(',').map do |part|
+    part.split('-')
+  end
+  first_range = Range.new(sides[0][0].to_i, sides[0][1].to_i)
+  second_range = Range.new(sides[1][0].to_i, sides[1][1].to_i)
+  [first_range, second_range]
+end
+
+def fully_contained(a, b)
+  a.cover?(b) || b.cover?(a)
+end
+
+input = File.readlines('input/day04.txt').filter do |line|
+  fully_contained(*parse_line(line))
+end
+
+puts "Final count: #{input.count}"
