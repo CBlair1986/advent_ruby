@@ -5,7 +5,7 @@ task :default do
 end
 
 task :day, [:year, :day] do |_t, args|
-  Dir.chdir args.year {
+  Dir.chdir(args.year) do
     ruby "day#{args.day}.rb"
-  }
+  end
 end
