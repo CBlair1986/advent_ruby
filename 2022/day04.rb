@@ -62,17 +62,21 @@
 #
 # In how many assignment pairs does one range fully contain the other?
 
-def parse_line(line)
-  sides = line.split(',').map do |part|
+def split_line(line)
+  line.split(',').map do |part|
     part.split('-')
   end
+end
+
+def parse_line(line)
+  sides = split_line(line)
   first_range = Range.new(sides[0][0].to_i, sides[0][1].to_i)
   second_range = Range.new(sides[1][0].to_i, sides[1][1].to_i)
   [first_range, second_range]
 end
 
-def fully_contained(a, b)
-  a.cover?(b) || b.cover?(a)
+def fully_contained(range_a, range_b)
+  range_a.cover?(range_b) || range_b.cover?(range_a)
 end
 
 input = File.readlines('input/day04.txt').filter do |line|
