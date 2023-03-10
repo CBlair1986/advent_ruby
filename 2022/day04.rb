@@ -62,6 +62,7 @@
 #
 # In how many assignment pairs does one range fully contain the other?
 
+# split_line returns the different parts that we are interested in parsing.
 def split_line(line)
   line.split(',').map do |part|
     part.split('-')
