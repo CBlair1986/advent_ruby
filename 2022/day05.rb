@@ -92,7 +92,7 @@ end)
                  .transpose
                  .map(&:reverse)
                  .filter do |line|
-  line[0] != ' '
+  line[0] != ' ' && line[0] != "\n"
 end
                  .map(&:join)
                  .map(&:strip)
@@ -108,4 +108,17 @@ def parse_move(line)
   Move.new(parts[:amount], parts[:from], parts[:to])
 end
 
-pp moves_section.map { |line| [line, parse_move(line)] }
+class Stacker
+  attr_accessor :stacks
+
+  def initialize(stacks_lines)
+    @stacks = []
+    stacks_lines.each do |line|
+      chars = line.chars
+      first, *rest = chars
+      @stacks.push([first, rest])
+    end
+  end
+end
+
+pp Stacker.new stacks_section
