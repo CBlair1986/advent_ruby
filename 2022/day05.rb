@@ -84,9 +84,7 @@
 
 input = File.readlines('input/day05.txt')
 
-stacks_section = (input.take_while do |line|
-  line != "\n"
-end)
+stacks_section = (input.take_while { |line| line != "\n" })
                  .to_a
                  .map(&:chars)
                  .transpose
@@ -108,6 +106,7 @@ def parse_move(line)
   Move.new(parts[:amount], parts[:from], parts[:to])
 end
 
+## Contains the bit and pieces of the alg.
 class Stacker
   attr_accessor :stacks
 
