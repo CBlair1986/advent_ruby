@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # --- Day 5: Supply Stacks ---
 
 # The expedition can depart as soon as the final supplies have been unloaded
@@ -103,7 +105,11 @@ Move = Struct.new(:amount, :from, :to)
 
 def parse_move(line)
   parts = line.match(/move (?<amount>\d+) from (?<from>\d+) to (?<to>\d+)/)
-  Move.new(parts[:amount], parts[:from], parts[:to])
+  Move.new(parts[:amount].to_i, parts[:from], parts[:to])
+end
+
+moves = moves_section.map do |move_line|
+  parse_move(move_line)
 end
 
 ## Contains the bit and pieces of the alg.
@@ -118,6 +124,36 @@ class Stacker
       @stacks[first] = rest
     end
   end
+
+  def eval_move(move)
+    target = @stacks[move.from].pop(move.amount).reverse
+    @stacks[move.to].push(*target)
+  end
+
+  def show_top_crates
+    @stacks.map { |_k, v| v.last }
+  end
 end
 
-pp Stacker.new stacks_section
+s = Stacker.new stacks_section
+
+moves.each do |move|
+  s.eval_move(move)
+end
+
+puts "Part 1: #{s.show_top_crates.join}"
+
+class Stacker2 < Stacker
+  def eval_move(move)
+    target = @stacks[move.from].pop(move.amount)
+    @stacks[move.to].push(*target)
+  end
+end
+
+s2 = Stacker2.new stacks_section
+
+moves.each do |move|
+  s.eval_move(move)
+end
+
+puts "Part 2: #{s2.show_top_crates.join}"
