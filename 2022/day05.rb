@@ -152,9 +152,9 @@ class Stacker2 < Stacker
 end
 
 s2 = Stacker2.new stacks_section
-pp s2
+
 moves.each do |move|
-  s.eval_move(move)
+  s2.eval_move(move)
 end
-pp s2
+
 puts "Part 2: #{s2.show_top_crates.join}"
