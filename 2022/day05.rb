@@ -18,10 +18,10 @@
 # They do, however, have a drawing of the starting stacks of crates and the
 # rearrangement procedure (your puzzle input). For example:
 
-#     [D]    
-# [N] [C]    
+#     [D]
+# [N] [C]
 # [Z] [M] [P]
-#  1   2   3 
+#  1   2   3
 
 # move 1 from 2 to 1
 # move 3 from 1 to 3
@@ -38,20 +38,20 @@
 # first step of the above rearrangement procedure, one crate is moved from
 # stack 2 to stack 1, resulting in this configuration:
 
-# [D]        
-# [N] [C]    
+# [D]
+# [N] [C]
 # [Z] [M] [P]
-#  1   2   3 
+#  1   2   3
 
 # In the second step, three crates are moved from stack 1 to stack 3. Crates
 # are moved one at a time, so the first crate to be moved (D) ends up below
 # the second and third crates:
 
- #        [Z]
- #        [N]
- #    [C] [D]
- #    [M] [P]
- # 1   2   3
+#        [Z]
+#        [N]
+#    [C] [D]
+#    [M] [P]
+# 1   2   3
 
 # Then, both crates are moved from stack 2 to stack 1. Again, because crates
 # are moved one at a time, crate C ends up below crate M:
@@ -82,6 +82,30 @@
 
 # What are we talking about right now?
 
-input = File.read('input/day05.txt')
+input = File.readlines('input/day05.txt')
 
-first_section = input.read()
+stacks_section = (input.take_while do |line|
+  line != "\n"
+end)
+                 .to_a
+                 .map(&:chars)
+                 .transpose
+                 .map(&:reverse)
+                 .filter do |line|
+  line[0] != ' '
+end
+                 .map(&:join)
+                 .map(&:strip)
+
+moves_section = (input.drop_while do |line|
+  line != "\n"
+end).to_a.drop(1)
+
+Move = Struct.new(:amount, :from, :to)
+
+def parse_move(line)
+  parts = line.match(/move (?<amount>\d+) from (?<from>\d+) to (?<to>\d+)/)
+  Move.new(parts[:amount], parts[:from], parts[:to])
+end
+
+pp moves_section.map { |line| [line, parse_move(line)] }
