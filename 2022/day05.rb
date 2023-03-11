@@ -143,6 +143,7 @@ end
 
 puts "Part 1: #{s.show_top_crates.join}"
 
+# Stacker2 does the same thing but different
 class Stacker2 < Stacker
   def eval_move(move)
     target = @stacks[move.from].pop(move.amount)
@@ -151,9 +152,9 @@ class Stacker2 < Stacker
 end
 
 s2 = Stacker2.new stacks_section
-
+pp s2
 moves.each do |move|
   s.eval_move(move)
 end
-
+pp s2
 puts "Part 2: #{s2.show_top_crates.join}"
