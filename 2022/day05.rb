@@ -111,11 +111,11 @@ class Stacker
   attr_accessor :stacks
 
   def initialize(stacks_lines)
-    @stacks = []
+    @stacks = {}
     stacks_lines.each do |line|
       chars = line.chars
       first, *rest = chars
-      @stacks.push([first, rest])
+      @stacks[first] = rest
     end
   end
 end
